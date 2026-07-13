@@ -62,45 +62,34 @@ footer a{color:var(--dim)}
   </ul>
   <footer>Praxis — личный бренд врача под ключ · <a href="/#book">Обсудить разбор</a></footer>
 </main>
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-   m[i].l=1*new Date();
-   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-   ym(0, "init", {clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true});
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/0" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
 <script>
-document.addEventListener("submit", function(e){
-  if (e.target && e.target.tagName === "FORM") {
-    try { window.ym && ym(0, "reachGoal", "lead"); } catch (err) {}
-  }
-}, true);
-</script>
-<script>
-document.addEventListener("submit", function(e){
-  var f = e.target;
-  if (!f || f.tagName !== "FORM") return;
-  var q = new URLSearchParams(location.search);
-  var pick = function(n){ return (f.elements[n] && f.elements[n].value) || ""; };
-  var payload = {
-    name: pick("cname") || pick("name"),
-    contact: pick("contact") || pick("phone"),
-    source_answer: pick("source_answer"),
-    utm_source: q.get("utm_source") || "",
-    promo_code: pick("promo_code"),
-    page: location.pathname
-  };
-  if (!payload.name || !payload.contact) return;
-  try {
-    fetch("/api/lead", {method: "POST", keepalive: true,
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(payload)});
-  } catch (err) {}
-}, true);
+/* Страховочная сетка заявки.
+   Форма отдаёт врача в Telegram, где он должен САМ нажать «Отправить».
+   Не нажал или Telegram не открылся (десктоп без клиента) — заявка исчезала
+   молча. Теперь текст остаётся у человека на экране с прямой ссылкой. */
+(function(){
+  var TG = "praxisdent";
+  document.addEventListener("submit", function(e){
+    var f = e.target;
+    if (!f || f.tagName !== "FORM") return;
+    var pick = function(n){ return (f.elements[n] && f.elements[n].value) || ""; };
+    var name = pick("cname") || pick("name");
+    var contact = pick("contact") || pick("phone");
+    if (!name || !contact) return;
+    var msg = "Заявка с сайта Praxis. Имя: " + name + ". Контакт: " + contact + ".";
+    try { localStorage.setItem("praxis_lead", msg); } catch (err) {}
+
+    var box = document.createElement("div");
+    box.setAttribute("role", "status");
+    box.style.cssText = "margin-top:1rem;padding:1rem 1.1rem;border:1px solid var(--line,#d8d8d4);border-radius:12px;line-height:1.5";
+    var a = '<a href="https://t.me/' + TG + '" target="_blank" rel="noopener" style="text-decoration:underline">@' + TG + '</a>';
+    box.innerHTML = "<b>Мы открыли Telegram — нажмите там «Отправить».</b>"
+      + "<br>Не открылся? Скопируйте текст и пришлите нам в " + a + ":"
+      + '<br><code style="display:block;margin-top:.6rem;padding:.6rem;background:rgba(0,0,0,.05);border-radius:8px;word-break:break-word">'
+      + msg.replace(/</g, "&lt;") + "</code>";
+    if (f.parentNode) f.parentNode.insertBefore(box, f.nextSibling);
+  }, true);
+})();
 </script>
 </body>
 </html>
