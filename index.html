@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Praxis · Личный бренд врача-имплантолога под ключ</title>
+<meta name="description" content="Praxis — личный бренд врача-имплантолога под ключ: премиальный сайт, статьи, которые двигают вас выше в поиске, соцсети в вашем голосе и юридическая безопасность рекламы. Вы тратите 15 минут в неделю.">
+<!-- Шрифты бренда: Spectral (заголовки) + Satoshi (текст) + Clash Display (цифры) -->
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap">
+<link rel="stylesheet" href="../brand/tokens.css">
+<link rel="stylesheet" href="../brand/components.css">
+<style>
+/* ============================================================
+   PRAXIS · ФЛАГМАН-ЛЕНДИНГ — «Титан и кость» поверх токенов.
+   Continuous-scroll (не .slide-дек). Только var(--*) + локальные.
+   ============================================================ */
+:root{ --titanium:#8a8f8c; --brass:#a9823f; --pad-x:clamp(1.3rem,5vw,6rem); }
+[data-theme="dark"]{ --titanium:#9aa19c; --brass:#c8a45c; }
+
+html{overflow-x:hidden;scroll-behavior:smooth}
+body{overflow-x:hidden;max-width:100vw;position:relative;line-height:1.55}
+h1,h2,h3,p,li,.lead,.hook,.pull{overflow-wrap:break-word;word-break:break-word}
+h3{font-family:var(--font-serif);font-weight:600;line-height:1.15}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:var(--pad-x)}
+section{padding-block:clamp(3.2rem,7vw,7rem);position:relative;z-index:1}
+
+/* зерно — убивает «плоский AI-шаблон» */
+body::after{content:"";position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.05;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* сигнатура: kicker-мишень (хирургическая регистрация) вместо линии */
+.kicker{align-items:flex-start}
+.kicker::before{content:"";width:15px;height:15px;flex:0 0 auto;border:1px solid currentColor;border-radius:50%;background:
+  linear-gradient(currentColor,currentColor) center/9px 1px no-repeat,
+  linear-gradient(currentColor,currentColor) center/1px 9px no-repeat;opacity:.9;margin-top:.15rem}
+
+/* тёмная секция: токены flip через data-theme, красим фон */
+section[data-theme="dark"]{background:var(--bg);color:var(--ink)}
+
+/* band-ритм: тонкий тональный шаг (bg-2) разбивает смежные светлые секции —
+   иначе длинный светлый прогон читается плоско (донор band'ов: Halo Dental).
+   #site/#result НЕ трогаем — там bg-2-карточки (браузер-мок / панель) должны «плавать». */
+#stack,#seo,#launch{background:var(--bg-2)}
+
+/* точность типо-пары: балансируем крупные serif-заголовки (нет орфанов),
+   мягкий rag в основном тексте — progressive, layout-нейтрально */
+h1,h2,h3,.pull,.hook{text-wrap:balance}
+p,.lead,.hero-meta{text-wrap:pretty}
+
+/* scroll-progress (хром) */
+.progress{position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:100;transition:width .15s linear}
+
+/* ——— ШАПКА ——— */
+header.nav{position:sticky;top:0;z-index:60;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(12px) saturate(1.1);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:62px}
+.nav .wordmark{font-size:1.35rem}
+.nav-links{display:flex;gap:1.5rem;font-size:.9rem;color:var(--ink-dim)}
+.nav-links a{color:var(--ink-dim);text-decoration:none;transition:color .2s}.nav-links a:hover{color:var(--accent)}
+.nav-cta{margin:0;padding:.55rem 1.15rem;font-size:.88rem;border-radius:999px}
+@media(max-width:860px){.nav-links{display:none}}
+
+/* ——— HERO (dark, full-bleed имплант) ——— */
+.hero{padding:0;min-height:calc(100svh - 62px);display:flex;overflow:hidden}
+.bleed-img{position:absolute;inset:0;z-index:0}
+.bleed-img img{width:100%;height:100%;object-fit:cover;display:block}
+.bleed-scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(8,14,13,.66) 0%,rgba(8,14,13,.30) 42%,rgba(8,14,13,.95) 100%)}
+.hero-in{position:relative;z-index:3;width:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:var(--pad-x);padding-bottom:clamp(2.5rem,6vw,4.5rem)}
+.hero h1{font-family:var(--font-serif);font-weight:600;letter-spacing:-.02em;line-height:1.03;font-size:clamp(2.3rem,7.2vw,5.4rem);max-width:16ch}
+.hook{font-family:var(--font-serif);font-style:italic;font-size:clamp(1.25rem,3.4vw,2rem);line-height:1.18;color:var(--accent);margin-top:1.2rem;max-width:24ch}
+.hero-meta{margin-top:1.8rem;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);max-width:52ch;line-height:1.7}
+.hero .cta{margin-top:2rem}
+/* crosshair-уголки */
+.corner{position:absolute;width:16px;height:16px;z-index:4;opacity:.6}
+.corner::before,.corner::after{content:"";position:absolute;background:var(--accent)}
+.corner::before{left:50%;top:0;width:1px;height:100%;transform:translateX(-.5px)}
+.corner::after{top:50%;left:0;height:1px;width:100%;transform:translateY(-.5px)}
+.corner.tl{top:16px;left:16px}.corner.br{bottom:16px;right:16px}
+
+/* ——— СТЕК-СТРОКИ (проблема / список) ——— */
+.stack{display:grid;gap:.15rem;margin-top:2rem;max-width:64ch}
+.stack .row{display:grid;grid-template-columns:2.4rem 1fr;gap:1rem;align-items:baseline;border-top:1px solid var(--line);padding:1rem 0}
+.stack .row .n{font-family:var(--font-grotesk);color:var(--accent);font-weight:600;font-size:1.05rem}
+.stack .row b{color:var(--ink);font-weight:600}.stack .row span{color:var(--ink-dim)}
+.pull{font-family:var(--font-serif);font-size:clamp(1.25rem,2.8vw,1.9rem);line-height:1.28;color:var(--ink);margin-top:2rem;max-width:32ch}
+.pull .accent{font-style:italic}
+.rule{height:1px;border:0;margin:1.6rem 0;background:linear-gradient(90deg,transparent,var(--titanium),transparent);opacity:.5}
+
+/* ——— FOOTER ——— */
+footer{background:var(--bg-2);border-top:1px solid var(--line);font-size:.88rem;color:var(--ink-dim)}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:2rem;padding-block:clamp(2.2rem,5vw,3.6rem)}
+.foot-grid h4{font-family:var(--font-body);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);margin-bottom:.85rem}
+.foot-grid a{color:var(--ink-dim);text-decoration:none;line-height:1.9}.foot-grid a:hover{color:var(--accent)}
+@media(max-width:860px){.foot-grid{grid-template-columns:1fr;gap:1.6rem}}
+
+/* ===== BATCH pillars-site-seo (builder) ===== */
+/* ====== ps- · БАТЧ pillars-site-seo (секции #stack · #site · #seo) ====== */
+
+/* --- Опора 1 · Сайт: mock-браузер showcase --- */
+.ps-site-showcase{
+  display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.6rem,4vw,3.2rem);
+  align-items:center;margin-top:2.2rem;
+}
+.ps-site-browser{
+  border-radius:12px;overflow:hidden;border:1px solid var(--line);
+  background:var(--bg-2);box-shadow:0 30px 60px -32px rgba(27,26,23,.35);
+}
+.ps-site-browser-bar{display:flex;align-items:center;gap:.4rem;padding:.65rem .9rem;border-bottom:1px solid var(--line)}
+.ps-site-browser-dot{width:9px;height:9px;border-radius:50%;background:var(--ink-faint);opacity:.55;display:inline-block}
+.ps-site-browser-url{margin-left:.6rem;font-size:.72rem;color:var(--ink-dim);background:var(--bg);padding:.3rem .85rem;border-radius:999px;font-family:var(--font-body)}
+.ps-site-browser img{width:100%;display:block;aspect-ratio:16/10;object-fit:cover}
+
+.ps-site-ticks{list-style:none;display:grid;gap:.75rem;margin-top:.3rem}
+.ps-site-ticks li{display:grid;grid-template-columns:auto 1fr;gap:.75rem;font-size:1.02rem;color:var(--ink-dim);line-height:1.45}
+.ps-site-ticks li::before{content:"✓";color:var(--accent);font-weight:700}
+.ps-site-ticks li b{color:var(--ink);font-weight:600}
+
+/* --- Опора 2 · SEO: суффикс в числах, подзаголовки, addon-примечание --- */
+.ps-seo-unit{font-size:.5em;color:var(--ink-dim);letter-spacing:.02em;font-family:var(--font-body);font-weight:500}
+
+.ps-seo-subhead{
+  font-family:var(--font-serif);font-weight:600;color:var(--ink);
+  font-size:clamp(1.5rem,3.4vw,2.15rem);line-height:1.14;letter-spacing:-.01em;
+}
+
+.ps-seo-addon{
+  margin-top:1.8rem;border:1px dashed var(--titanium);border-radius:var(--radius);
+  padding:1.1rem 1.25rem;font-size:.92rem;color:var(--ink-dim);max-width:58ch;line-height:1.5;
+}
+.ps-seo-addon b{color:var(--ink)}
+
+/* SEO-фигура: добор-кадр «стопка статей» (nano_banana_pro, 0 текста/лого/лиц) */
+.seo-figure{margin:2.2rem 0 .4rem;border-radius:12px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 60px -32px rgba(27,26,23,.35);max-width:760px}
+.seo-figure img{width:100%;display:block;aspect-ratio:4/3;object-fit:cover}
+
+/* --- МОБАЙЛ --- */
+@media(max-width:820px){
+  .ps-site-showcase{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .ps-site-browser-url{font-size:.68rem;padding:.28rem .7rem}
+  .ps-site-ticks li{font-size:1rem}
+  .ps-seo-subhead{font-size:clamp(1.35rem,7vw,1.7rem)}
+  .ps-seo-addon{font-size:.88rem;padding:1rem 1.05rem}
+}
+
+
+/* ===== BATCH social-team (verifier(ok=False)) ===== */
+/* ST · card grid — «Опора 4 · Команда» (роли специалистов) */
+.st-card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:2.6rem}
+.st-card{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);padding:1.5rem 1.35rem;background:var(--bg-2)}
+.st-card::before{content:"";position:absolute;left:0;top:0;width:100%;height:2px;background:linear-gradient(90deg,var(--accent),transparent)}
+.st-card h3{font-size:1.12rem;margin:.2rem 0 .45rem;color:var(--ink);line-height:1.2}
+.st-card p{font-size:.92rem;color:var(--ink-dim);line-height:1.48;margin:0}
+@media(hover:hover){
+  /* opacity/transform включены в transition, чтобы hover-правило не перебивало глобальный .reveal (.8s) на .st-card.reveal — иначе карточки появлялись бы рывком */
+  .st-card{transition:border-color .35s var(--ease),box-shadow .35s var(--ease),opacity .8s var(--ease),transform .8s var(--ease)}
+  .st-card:hover{border-color:var(--accent);box-shadow:0 18px 34px -24px rgba(0,0,0,.35)}
+}
+@media(max-width:820px){
+  .st-card-grid{grid-template-columns:1fr 1fr;gap:.9rem}
+}
+@media(max-width:560px){
+  .st-card-grid{grid-template-columns:1fr;gap:.8rem;margin-top:2rem}
+  .st-card{padding:1.3rem 1.2rem}
+}
+
+/* ===== BATCH shield-result-launch (verifier(ok=True)) ===== */
+/* ============================================================
+   BATCH shield-result-launch · sr- классы (панель-пример + таймлайн)
+   Только var(--*) из tokens.css / index.html local :root.
+   ============================================================ */
+
+/* — Результат: панель-«пример» заявок — */
+.sr-panel{position:relative;overflow:hidden;margin-top:1.8rem;max-width:600px;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-2)}
+.sr-panel::before{content:"";position:absolute;left:0;top:0;width:100%;height:2px;background:linear-gradient(90deg,var(--accent),transparent)}
+.sr-panel-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.3rem;padding:.8rem 1.1rem;border-bottom:1px solid var(--line);font-size:.78rem;color:var(--ink-dim)}
+.sr-panel-row{display:grid;grid-template-columns:1fr auto auto;gap:.9rem;align-items:center;padding:.7rem 1.1rem;border-bottom:1px solid var(--line);font-size:.92rem}
+.sr-panel-row:last-child{border-bottom:0}
+.sr-panel-count{font-family:var(--font-grotesk);color:var(--accent);font-weight:600}
+.sr-panel-note{font-size:.78rem;color:var(--gold-ink);white-space:nowrap}
+
+/* — Результат: воронка-шаги — */
+.sr-funnel{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.3rem}
+.sr-funnel-step{font-size:.78rem;color:var(--ink-dim);border:1px solid var(--line);border-radius:999px;padding:.4rem .9rem}
+.sr-funnel-step b{color:var(--accent)}
+
+/* — Запуск: таймлайн 3 колонки — */
+.sr-tl{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2.2rem}
+.sr-tl-col{border-top:2px solid var(--accent);padding-top:.9rem}
+.sr-tl-w{font-family:var(--font-grotesk);color:var(--accent);font-size:.8rem;letter-spacing:.05em;text-transform:uppercase}
+.sr-tl-col h3{font-size:1.15rem;margin:.4rem 0 .35rem}
+.sr-tl-col p{font-size:.94rem;color:var(--ink-dim);line-height:1.45}
+
+/* ——— МОБАЙЛ ——— */
+@media(max-width:820px){
+  .sr-tl{grid-template-columns:1fr;gap:1.6rem}
+}
+@media(max-width:560px){
+  .sr-panel-row{padding:.65rem .9rem;gap:.6rem;font-size:.88rem}
+  .sr-panel-top{padding:.7rem .9rem}
+  .sr-panel-note{font-size:.72rem}
+  .sr-funnel-step{font-size:.74rem;padding:.35rem .75rem}
+  .sr-tl-col h3{font-size:1.05rem}
+  .sr-tl-col p{font-size:.9rem}
+}
+
+/* ===== BATCH price-close (verifier(ok=True)) ===== */
+/* ============================================================
+   BATCH · price-close — pc- префикс. Только новые классы.
+   ============================================================ */
+
+/* ——— ЦЕНА (pc-price / pc-old / pc-new / pc-tag) ——— */
+.pc-price{display:flex;align-items:baseline;gap:1.2rem;flex-wrap:wrap;margin-top:1.4rem}
+.pc-old{font-family:var(--font-grotesk);font-size:clamp(1.3rem,3.4vw,1.9rem);color:var(--ink-faint);text-decoration:line-through;text-decoration-color:var(--brass, var(--gold));text-decoration-thickness:3px}
+.pc-new{font-family:var(--font-grotesk);font-weight:700;font-size:clamp(2.6rem,9vw,4.4rem);color:var(--accent);line-height:.95}
+.pc-tag{display:inline-block;margin-top:.7rem;background:var(--accent);color:var(--bg);font-family:var(--font-grotesk);font-weight:600;font-size:.8rem;letter-spacing:.04em;padding:.45rem 1rem;border-radius:999px}
+
+/* ——— ЯКОРЬ-ЦИТАТА (сравнение с подрядчиками) ——— */
+.pc-anchor{margin-top:1.5rem;font-size:1.05rem;line-height:1.55;color:var(--ink-dim);border-left:2px solid var(--accent);padding-left:1.1rem;max-width:60ch}
+.pc-anchor b{color:var(--ink);font-weight:600}
+
+/* ——— CLOSE: карточка формы (pc-book / pc-form / pc-alt) ——— */
+.pc-book{margin-top:2.4rem;padding:clamp(1.6rem,4vw,2.6rem);border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-2);max-width:640px}
+.pc-form{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.pc-form input{width:100%;padding:1rem 1.1rem;font-family:var(--font-body);font-size:1rem;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);outline:none;transition:border-color .3s var(--ease)}
+.pc-form input::placeholder{color:var(--ink-faint)}
+.pc-form input:focus{border-color:var(--accent)}
+.pc-form .cta{grid-column:1 / -1;width:100%;justify-content:center;margin-top:.3rem}
+.pc-alt{display:inline-block;margin-top:1.2rem;font-size:.92rem;color:var(--ink-dim);text-decoration:none;border-bottom:1px solid transparent;transition:color .3s var(--ease),border-color .3s var(--ease)}
+.pc-alt:hover{color:var(--accent);border-color:var(--accent)}
+
+/* ============ МОБАЙЛ (390–560px, мобайл-first) ============ */
+@media(max-width:560px){
+  .pc-price{gap:.9rem}
+  .pc-anchor{font-size:1rem;padding-left:.9rem}
+  .pc-book{padding:1.4rem 1.15rem}
+  .pc-form{grid-template-columns:1fr}
+}
+
+/* ——— REVEAL-OVERRIDE (нет .slide → переопределяем components) ——— */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.vis{opacity:1;transform:none}
+
+/* ===== ДИЗАЙН-ПАСС 08.07 · «работаем по миллиметрам» ===== */
+/* Сигнатура: вертикальная мм-шкала (хирургическая точность) вместо
+   горизонтального прогресс-бара; заполняется по мере чтения */
+.progress{position:fixed;left:20px;top:50%;translate:0 -50%;width:12px;height:min(44svh,400px);z-index:80;pointer-events:none;
+  background:repeating-linear-gradient(to bottom,rgba(128,126,116,.4) 0 1px,transparent 1px calc(100%/22))}
+.progress::before{content:"";position:absolute;left:5px;top:0;bottom:0;width:2px;background:rgba(128,126,116,.28)}
+.progress::after{content:"";position:absolute;left:5px;top:0;width:2px;height:var(--sp,0%);background:var(--accent);transition:height .18s linear}
+@media(max-width:999px){.progress{display:none}}
+
+/* Hero: «объектив наводится» — каскад blur→фокус + медленный наезд макро */
+#top .hero-in .reveal{transition:opacity .95s var(--ease),transform .95s var(--ease),filter .95s var(--ease);filter:blur(9px)}
+#top .hero-in .reveal.vis{filter:blur(0)}
+#top .hero-in .reveal:nth-child(2){transition-delay:.1s}
+#top .hero-in .reveal:nth-child(3){transition-delay:.22s}
+#top .hero-in .reveal:nth-child(4){transition-delay:.34s}
+#top .hero-in .reveal:nth-child(5){transition-delay:.46s}
+#top .bleed-img img{animation:lens 2.8s var(--ease) both}
+@keyframes lens{from{scale:1.07}to{scale:1}}
+
+/* Кинематографичный band: лёгкий параллакс (нативный, по скроллу) */
+@supports(animation-timeline:view()){
+  @media(min-width:860px) and (prefers-reduced-motion:no-preference){
+    .band .bleed-img img{scale:1.12;animation:par linear both;animation-timeline:view();animation-range:cover}
+    @keyframes par{from{translate:0 -3.5%}to{translate:0 3.5%}}
+  }
+}
+
+/* Микро-интеракции: подчёркивание меню, подъём карточек, стрелка CTA */
+.nav-links a{position:relative}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-4px;width:100%;height:1px;background:var(--accent);scale:0 1;transform-origin:left;transition:scale .3s var(--ease)}
+.nav-links a:hover::after{scale:1 1}
+.st-card:hover{transform:translateY(-4px);border-color:rgba(29,91,86,.35);box-shadow:0 16px 34px rgba(22,29,27,.09)}
+.cta .arr{display:inline-block;transition:translate .3s var(--ease)}
+.cta:hover .arr{translate:6px 0}
+html.lenis{scroll-behavior:auto}
+
+/* ——— МОБАЙЛ ——— */
+@media(max-width:560px){
+  .kicker{letter-spacing:.2em;font-size:.64rem;flex-wrap:wrap;white-space:normal;line-height:1.5}
+  .hero h1{font-size:clamp(2rem,9vw,2.9rem)}
+  .hook{font-size:1.3rem;max-width:100%}
+  .pull{font-size:1.35rem;max-width:100%}
+  .stack .row{grid-template-columns:1.9rem 1fr;gap:.8rem}
+  .corner{display:none}
+  .wrap{padding-inline:1.3rem}
+}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}body::after{display:none}html{scroll-behavior:auto}
+  #top .hero-in .reveal{filter:none;transition-delay:0s}#top .bleed-img img{animation:none}.progress::after{transition:none}}
+@media print{body::after{display:none}header.nav{position:static}.reveal{opacity:1!important;transform:none!important}.progress{display:none}}
+</style>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23161d1b'/%3E%3Ccircle cx='32' cy='32' r='13' fill='%231d5b56'/%3E%3C/svg%3E">
+<meta name="robots" content="noindex,nofollow" />
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<!-- ШАПКА -->
+<header class="nav">
+  <div class="wrap nav-in">
+    <span class="wordmark">Praxis<span class="dot">.</span></span>
+    <nav class="nav-links">
+      <a href="#brand">Что это</a>
+      <a href="#stack">Что входит</a>
+      <a href="#price">Цена</a>
+    </nav>
+    <a href="#book" class="cta nav-cta">Забронировать разбор</a>
+  </div>
+</header>
+
+<!-- 01 · HERO -->
+<section class="hero" id="top" data-theme="dark">
+  <div class="bleed-img"><img src="assets/hero-implant-dark.png" alt="Титановый зубной имплант — макро, крупно"></div>
+  <div class="bleed-scrim"></div>
+  <span class="corner tl"></span><span class="corner br"></span>
+  <div class="hero-in">
+    <div class="kicker reveal">Praxis · для врача-имплантолога</div>
+    <h1 class="reveal">Врач, которому доверяют&nbsp;— и к которому <span class="serif-i accent">идут на приём.</span></h1>
+    <p class="hook reveal">Вы больше не конкурируете ценой — пациент ищет именно вас, по имени.</p>
+    <p class="hero-meta reveal">Личный бренд под ключ · запуск за 2 недели + первый месяц ведения · вашего времени — 15–20 минут в неделю</p>
+    <a href="#book" class="cta reveal">Забронировать разбор <span class="arr">→</span></a>
+  </div>
+</section>
+
+<!-- 02 · ПРОБЛЕМА -->
+<section id="problem">
+  <div class="wrap">
+    <div class="kicker reveal">Знакомо?</div>
+    <h2 class="reveal">Два страха одного врача</h2>
+    <div class="stack">
+      <div class="row reveal"><div class="n">01</div><div><b>Пациенты не находят вас в интернете.</b> <span>Сайт есть — а записей нет. Вас теряют среди «клиник вообще».</span></div></div>
+      <div class="row reveal"><div class="n">02</div><div><b>Страшно за одну фразу получить штраф.</b> <span>Реклама у врача — минное поле: закон о рекламе, данные пациентов, маркировка.</span></div></div>
+    </div>
+    <p class="pull reveal">Маркетолог решит первую проблему — и молча <span class="accent">создаёт вторую.</span></p>
+  </div>
+</section>
+
+<!-- 03 · БРЕНД ПРОСТЫМИ СЛОВАМИ -->
+<section id="brand" data-theme="dark">
+  <div class="wrap">
+    <div class="kicker reveal">Простыми словами</div>
+    <h2 class="reveal">Личный бренд — это не логотип.<br>Это <span class="accent serif-i">доверие,</span> которое приводит пациента.</h2>
+    <p class="lead reveal">Люди выбирают конкретного врача, а не клинику «вообще». Когда вам доверяют ещё до первого визита — цена перестаёт быть главным аргументом.</p>
+    <hr class="rule reveal">
+    <div class="stack" style="margin-top:.4rem">
+      <div class="row reveal"><div class="n">→</div><div><b>Вас узнают</b> <span>— сайт, статьи и соцсети говорят вашим голосом.</span></div></div>
+      <div class="row reveal"><div class="n">→</div><div><b>Вам доверяют</b> <span>— видят опыт, ответы на вопросы, реальные случаи.</span></div></div>
+      <div class="row reveal"><div class="n">→</div><div><b>К вам записываются</b> <span>— и возвращаются, и советуют знакомым.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · ЧЕТЫРЕ ОПОРЫ -->
+<section id="stack">
+  <div class="wrap">
+    <div class="kicker reveal">Что вы получаете</div>
+    <h2 class="reveal">Четыре опоры — <span class="accent">одна связка.</span></h2>
+    <div class="stack">
+      <div class="row reveal"><div class="n">01</div><div><b>Премиальный сайт-портфолио.</b> <span>Ваш опыт, услуги и кейсы в дизайне уровня частной клиники.</span></div></div>
+      <div class="row reveal"><div class="n">02</div><div><b>Статьи, которые находят пациентов.</b> <span>Новая статья каждую неделю под вашим именем. Она поднимает вас в Яндексе и Google, а нейросети начинают советовать именно вас.</span></div></div>
+      <div class="row reveal"><div class="n">03</div><div><b>Соцсети.</b> <span>Два канала на выбор — команда ведёт их в вашем голосе.</span></div></div>
+      <div class="row reveal"><div class="n">04</div><div><b>Команда сопровождения.</b> <span>Ведёт запуск, держит связь, каждую неделю показывает цифры.</span></div></div>
+    </div>
+    <p class="pull reveal">И поверх всего — <span class="accent">щит: юридическая безопасность рекламы.</span></p>
+  </div>
+</section>
+
+<!-- 05 · ОПОРА 1 · САЙТ + ЖИВОЙ ОБРАЗЕЦ -->
+<section id="site">
+  <div class="wrap">
+    <div class="kicker reveal">Опора 1 · Сайт-портфолио</div>
+    <h2 class="reveal">Сайт, который <span class="accent serif-i">продаёт доверием</span></h2>
+    <div class="ps-site-showcase">
+      <div class="ps-site-browser reveal">
+        <div class="ps-site-browser-bar">
+          <span class="ps-site-browser-dot"></span><span class="ps-site-browser-dot"></span><span class="ps-site-browser-dot"></span>
+          <span class="ps-site-browser-url">annamelnikova.ru</span>
+        </div>
+        <img src="assets/operatory.png" alt="Образец сайта врача-имплантолога">
+      </div>
+      <div class="reveal">
+        <ul class="ps-site-ticks">
+          <li><span><b>Послужной список</b> — опыт, образование, сертификаты, членства.</span></li>
+          <li><span><b>Услуги понятным языком</b> — что это, кому подходит, что по шагам.</span></li>
+          <li><span><b>Кейсы «до/после»</b> — анонимно, по закону о данных пациентов.</span></li>
+          <li><span><b>Доп. услуги клиники</b> — гигиена, диагностика, реставрация.</span></li>
+          <li><span><b>Запись и контакты</b> — форма записи, мессенджеры и ссылка на ваш профиль-карту.</span></li>
+        </ul>
+        <a class="cta reveal" href="sample-doctor-site.html" target="_blank">Открыть живой образец врача <span class="arr">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06–08 · ОПОРА 2 · SEO-ОТДЕЛ (статьи + нейросети + без бюджета) -->
+<section id="seo">
+  <div class="wrap">
+    <div class="kicker reveal">Опора 2 · SEO-отдел</div>
+    <h2 class="reveal">Статья в неделю двигает вас <span class="accent serif-i">выше в поиске.</span></h2>
+    <p class="lead reveal">SEO-отдел пишет и публикует новую сильную статью каждую неделю под вашим именем — на темы, которые ищут ваши будущие пациенты. Она поднимает вас в выдаче Яндекса и Google по запросам вашего города.</p>
+    <div class="nums">
+      <div class="num reveal"><div class="num-k">4<span class="ps-seo-unit"> / месяц</span></div><div class="num-v">новые статьи под ваши запросы — по одной в неделю</div></div>
+      <div class="num reveal"><div class="num-k">≈48<span class="ps-seo-unit"> / год</span></div><div class="num-v">библиотека, которая работает на вас годами</div></div>
+      <div class="num reveal"><div class="num-k">Рост<span class="ps-seo-unit"> Я+G</span></div><div class="num-v">видимость по запросам ваших пациентов в вашем городе</div></div>
+    </div>
+
+    <figure class="seo-figure reveal">
+      <img src="assets/seo-stack.png" alt="Стопка SEO-статей — библиотека материалов под именем врача" loading="lazy">
+    </figure>
+
+    <hr class="rule reveal">
+
+    <h3 class="ps-seo-subhead reveal">Вас находят и в <span class="accent serif-i">нейросетях.</span></h3>
+    <p class="lead reveal">Пациенты всё чаще не гуглят, а спрашивают ChatGPT, Алису, Perplexity: «к какому имплантологу пойти», «сколько стоит имплант». Мы пишем статьи так, чтобы нейросети приводили в пример именно вас.</p>
+
+    <hr class="rule reveal">
+
+    <h3 class="ps-seo-subhead reveal">Поток пациентов <span class="accent serif-i">без рекламного бюджета.</span></h3>
+    <p class="lead reveal">Реклама заканчивается вместе с деньгами. Статьи остаются в поиске и приводят пациентов месяцами — это актив, а не расход.</p>
+    <div class="ps-seo-addon reveal"><b>При желании усилим:</b> докупим размещение на платных статейных площадках. Это отдельный, необязательный расход — второй канал поверх бесплатного потока.</div>
+  </div>
+</section>
+
+
+<section id="social" data-theme="dark">
+  <div class="wrap">
+    <div class="kicker reveal">Опора 3 · Соцсети</div>
+    <h2 class="reveal">Два канала. <span class="accent serif-i">Ваш голос.</span></h2>
+    <p class="lead reveal">Выбираете два канала (база — Telegram и Instagram, можно Max). Команда ведёт их в вашей манере: полезные посты, разборы, ответы. Пациент читает вас, начинает доверять и приходит на приём.</p>
+    <hr class="rule reveal">
+    <div class="stack">
+      <div class="row reveal"><div class="n">→</div><div><b>Контент-воронка:</b> <span>образование → доверие → запись, а не «лайки ради лайков».</span></div></div>
+      <div class="row reveal"><div class="n">→</div><div><b>Instagram — только полезные посты.</b> <span>Без платной рекламы: так безопасно и по закону.</span></div></div>
+      <div class="row reveal"><div class="n">→</div><div><b>Единый премиальный стиль</b> <span>— оформление и голос-профиль, узнаваемые как ваши.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="team">
+  <div class="wrap">
+    <div class="kicker reveal">Опора 4 · Команда</div>
+    <h2 class="reveal">С вами — <span class="accent">выделенная команда.</span></h2>
+    <p class="lead reveal">За вашим проектом закреплены аккаунт-менеджер и команда. Ведём запуск от первого созвона до первых записей и каждую неделю показываем, что сделано и какие цифры. Не «сдали сайт и пропали».</p>
+    <div class="stack">
+      <div class="row reveal"><div class="n">→</div><div><b>Еженедельный отчёт и созвон</b> <span>— что сделано, что дальше, какие результаты.</span></div></div>
+      <div class="row reveal"><div class="n">→</div><div><b>Стратегия под вашу нишу</b> <span>— какие услуги двигаем, на каких пациентов делаем упор.</span></div></div>
+    </div>
+    <hr class="rule reveal">
+    <p class="pull reveal">Личный бренд врача — это работа нескольких специалистов. Каждый отвечает за свой участок, <span class="accent">а вы получаете результат как единую связку.</span></p>
+    <div class="st-card-grid">
+      <div class="st-card reveal"><h3>Аккаунт-менеджер</h3><p>Ведёт ваш проект и держит связь каждую неделю.</p></div>
+      <div class="st-card reveal"><h3>SEO-отдел и редакция</h3><p>Пишут и продвигают в поиске статьи под вашим именем.</p></div>
+      <div class="st-card reveal"><h3>Редактор соцсетей</h3><p>Ведёт каналы в вашем голосе, готовит контент.</p></div>
+      <div class="st-card reveal"><h3>Дизайн</h3><p>Собирает сайт и оформление на премиальном уровне.</p></div>
+      <div class="st-card reveal"><h3>Специалист по рекламному праву</h3><p>Проверяет каждую публикацию до выхода.</p></div>
+      <div class="st-card reveal"><h3>Ваш голос-профиль</h3><p>Фиксируем вашу манеру речи — масштаб не убивает голос.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 · ЩИТ (MOAT) — тёмная -->
+<section id="shield" data-theme="dark">
+  <div class="wrap">
+    <div class="kicker reveal">Чего не делает обычный маркетолог</div>
+    <h2 class="reveal">Каждое слово — <span class="accent">по закону.</span></h2>
+    <p class="lead reveal">Мы проверяем каждый пост и статью на соответствие закону ещё до публикации. Это в основе нашей работы, а не проверка задним числом.</p>
+    <div class="pills reveal">
+      <span class="pill on">Закон о рекламе (ФЗ-38)</span>
+      <span class="pill on">Данные пациентов (152-ФЗ)</span>
+      <span class="pill on">Маркировка рекламы (ОРД / erid)</span>
+    </div>
+    <p class="pull reveal">Обычный маркетолог принесёт трафик — а штраф за одно неверное слово получите вы. <span class="accent">Мы отвечаем за каждое слово.</span></p>
+    <p class="disclaimer reveal" style="margin-top:1.2rem">Каждая публикация врача выходит с дисклеймером по сути: «Имеются противопоказания, необходима консультация специалиста».</p>
+    <a href="shtraf-fas.html" class="pc-alt reveal" style="margin-top:1.4rem">Наш рабочий фильтр — 7 проверок перед публикацией. Открыть гайд →</a>
+  </div>
+</section>
+
+<!-- 12b · ГАРАНТИЯ — светлая -->
+<section id="guarantee">
+  <div class="wrap">
+    <div class="kicker reveal">Прямо и письменно</div>
+    <h2 class="reveal">Что фиксируем в договоре — <span class="accent serif-i">и чего не обещаем.</span></h2>
+    <div class="stack">
+      <div class="row reveal"><div class="n">✓</div><div><b>Объём работы — в договоре.</b> <span>Статьи, посты и материалы месяца прописаны числом. Сделано меньше — доводим объём за свой счёт.</span></div></div>
+      <div class="row reveal"><div class="n">✓</div><div><b>Юрист смотрит каждую публикацию</b> <span>до выхода — закон о рекламе, данные пациентов, маркировка.</span></div></div>
+      <div class="row reveal"><div class="n">✓</div><div><b>Цифры каждый месяц.</b> <span>Панель показывает заявки и их источники от вашей стартовой точки — рост виден, не «на словах».</span></div></div>
+      <div class="row reveal"><div class="n">—</div><div><b>Число пациентов не обещаем.</b> <span>Запись зависит и от приёма, и от цен клиники. Если вам обещают точное число пациентов — спросите, чем отвечают за обещание.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 13 · РЕЗУЛЬТАТ — светлая -->
+<section id="result">
+  <div class="wrap">
+    <div class="kicker reveal">Вы видите цифры</div>
+    <h2 class="reveal">Считаем записи, <span class="accent serif-i">а не лайки.</span></h2>
+    <p class="lead reveal">Панель показывает: сколько заявок пришло из соцсетей и сайта, откуда и сколько дошло до записи. Первые цифры — к концу месяца ведения.</p>
+
+    <div class="sr-panel reveal">
+      <div class="sr-panel-top"><span>Панель Praxis · заявки за месяц</span><span>пример интерфейса · данные условны</span></div>
+      <div class="sr-panel-row"><span>Статьи в поиске</span><span class="sr-panel-count">18</span><span class="sr-panel-note">→ 7 записей</span></div>
+      <div class="sr-panel-row"><span>Telegram</span><span class="sr-panel-count">11</span><span class="sr-panel-note">→ 5 записей</span></div>
+      <div class="sr-panel-row"><span>Instagram (посты)</span><span class="sr-panel-count">9</span><span class="sr-panel-note">→ 3 записи</span></div>
+    </div>
+
+    <div class="sr-funnel reveal">
+      <span class="sr-funnel-step"><b>1.</b> Позиционирование</span>
+      <span class="sr-funnel-step"><b>2.</b> Заявки</span>
+      <span class="sr-funnel-step"><b>3.</b> Интерес</span>
+      <span class="sr-funnel-step"><b>4.</b> Запись</span>
+      <span class="sr-funnel-step"><b>5.</b> Повторный визит</span>
+    </div>
+
+    <p class="disclaimer reveal" style="margin-top:1.1rem">Сколько заявок и записей пришло из каждого канала — показываем в панели каждый месяц. Конкретные цифры называем после замера от вашей стартовой точки, а не авансом.</p>
+  </div>
+</section>
+
+<!-- 14 · ЗАПУСК — светлая -->
+<section id="launch">
+  <div class="wrap">
+    <div class="kicker reveal">Как это устроено</div>
+    <h2 class="reveal">Запуск за 2 недели, первый месяц ведения — внутри</h2>
+
+    <div class="sr-tl">
+      <div class="sr-tl-col reveal"><div class="sr-tl-w">Недели 1–2</div><h3>Запуск под ключ</h3><p>Сайт, голос-профиль, ссылка на ваш профиль-карту, первые статьи и посты.</p></div>
+      <div class="sr-tl-col reveal"><div class="sr-tl-w">Первый месяц ведения</div><h3>Поток и цифры</h3><p>Статьи в поиске, посты в соцсетях, отчёт по заявкам и записям.</p></div>
+      <div class="sr-tl-col reveal"><div class="sr-tl-w">Дальше</div><h3>Масштаб — по желанию</h3><p>Своя система записи и расширение каналов на доказанном результате.</p></div>
+    </div>
+
+    <p class="pull reveal">Запуск и первый месяц ведения — <span class="accent">внутри пакета.</span></p>
+  </div>
+</section>
+
+<!-- КИНЕМАТОГРАФИЧНЫЙ BAND -->
+<section class="hero band" data-theme="dark" style="min-height:66svh">
+  <div class="bleed-img"><img src="assets/clinic-dusk.png" alt="Премиум-кабинет клиники на закате"></div>
+  <div class="bleed-scrim"></div>
+  <span class="corner tl"></span><span class="corner br"></span>
+  <div class="hero-in">
+    <div class="kicker reveal">Уровень исполнения</div>
+    <p class="pull reveal">Личный бренд уровня <span class="accent serif-i">частной клиники.</span></p>
+  </div>
+</section>
+
+<section id="price">
+  <div class="wrap">
+    <div class="kicker reveal">Сколько это стоит</div>
+    <h2 class="reveal">Цена запуска под ключ</h2>
+
+    <div class="pc-price reveal">
+      <span class="pc-old">≈ 430 000 ₽</span>
+      <span class="pc-new">150 000 ₽</span>
+    </div>
+    <span class="pc-tag reveal">в месяц</span>
+    <p class="disclaimer reveal" style="margin-top:.9rem">+ 150 000 ₽ внедрение — запуск за 2 недели, первый месяц ведения включён</p>
+
+    <p class="lead reveal" style="margin-top:1.3rem">В цену входит всё: премиальный сайт-портфолио · новая статья в поиске каждую неделю · две соцсети в вашем голосе · проверка каждого слова на соответствие закону · выделенная команда сопровождения. Запуск за 2 недели плюс первый месяц ведения. По договору фиксируем объём — <b>12–16 материалов в месяц</b>: это статьи и посты вместе, а не сверх друг друга.</p>
+
+    <p class="pc-anchor reveal">По отдельности сайт, статьи, соцсети и юридическая проверка — это <b>200 000+ ₽ в месяц</b> и пять подрядчиков. У нас — одна связка и одна цена.</p>
+
+    <p class="disclaimer reveal" style="margin-top:1rem">Реклама и платные площадки — по желанию, отдельной строкой.</p>
+  </div>
+</section>
+
+<section id="book" data-theme="dark">
+  <div class="wrap">
+    <div class="kicker reveal">Следующий шаг</div>
+    <h2 class="reveal">Делаем под ключ руками —<br>берём ограниченное число врачей <span class="accent">одновременно.</span></h2>
+    <p class="lead reveal">В первой группе — три врача, дальше лист ожидания. Первой группе фиксируем цену запуска и город: один имплантолог на город. Со второй группы условия пересматриваются.</p>
+    <p class="lead reveal">Первый шаг — бесплатный разбор: покажем, по каким запросам вас сейчас ищут пациенты, где вы теряете записи и как будет выглядеть ваш личный бренд. Без обязательств.</p>
+    <hr class="rule reveal">
+
+    <div class="pc-book reveal">
+      <form class="pc-form" onsubmit="return toTelegram(event)">
+        <input name="cname" required autocomplete="name" placeholder="Как вас зовут">
+        <input name="contact" required placeholder="Телефон или город">
+        <style>.pc-form select{grid-column:1 / -1;width:100%;padding:1rem 1.1rem;font-family:var(--font-body);font-size:1rem;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);outline:none}</style><select name="source_answer"><option value="" selected>Откуда вы о нас узнали? (по желанию)</option><option value="Telegram">Telegram</option><option value="Instagram / блог">Instagram / блог</option><option value="Поиск">Поиск</option><option value="Рекомендация">Рекомендация</option><option value="Другое">Другое</option></select><button class="cta" type="submit">Забронировать разбор <span class="arr">→</span></button>
+      </form>
+      <a href="https://t.me/praxisdent" class="pc-alt tg-link" target="_blank" rel="noopener">или написать в Telegram напрямую →</a>
+      <p class="disclaimer" style="margin-top:1rem;max-width:54ch">Нажимая «Забронировать разбор», вы соглашаетесь с обработкой персональных данных. Мы не передаём их третьим лицам.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER · Материалы + дисклеймер -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <span class="wordmark" style="font-size:1.5rem">Praxis<span class="dot">.</span></span>
+        <p style="margin-top:.7rem;max-width:34ch;color:var(--ink-dim)">Личный бренд врача под ключ: сайт, статьи, соцсети и юридическая безопасность — одной командой.</p>
+      </div>
+      <div>
+        <h4>Материалы</h4>
+        <a href="sample-doctor-site.html">Образец сайта врача</a><br>
+        <a href="articles/">Статьи, которые мы пишем</a><br>
+        <a href="shtraf-fas.html">Гайд: 7 проверок перед публикацией</a>
+      </div>
+      <div>
+        <h4>Связаться</h4>
+        Telegram: <a href="https://t.me/praxisdent" class="tg-link" data-at target="_blank" rel="noopener">@praxisdent</a><br>
+        <span style="color:var(--ink-faint)">заявки — через «Забронировать разбор»</span>
+      </div>
+    </div>
+    <p class="disclaimer" style="border-top:1px solid var(--line);padding-block:1.3rem">
+      Praxis — агентство. Услуги оказываются врачу-рекламодателю; каждая публикация проходит проверку на соответствие закону о рекламе (ФЗ-38) и о персональных данных (152-ФЗ). <b>Имеются противопоказания, необходима консультация специалиста.</b> © 2026 Praxis.
+    </p>
+  </div>
+</footer>
+
+<script>
+/* TG-close: собираем deep-link без бэкенда */
+const TG_HANDLE='praxisdent'; /* ник дан Максимом 04.07 */
+function toTelegram(e){
+  e.preventDefault();
+  const f=e.target;
+  const msg=`Здравствуйте! Хочу бесплатный разбор личного бренда врача.%0AИмя: ${encodeURIComponent(f.cname.value)}%0AКонтакт/город: ${encodeURIComponent(f.contact.value)}`;
+  window.open(`https://t.me/${TG_HANDLE}?text=${msg}`,'_blank');
+  return false;
+}
+/* reveal по входу в вьюпорт */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}}),{threshold:.14});
+/* scroll-progress → мм-шкала (заполнение по чтению) */
+const bar=document.getElementById('progress');
+function sp(){const h=document.documentElement;const p=h.scrollTop/(h.scrollHeight-h.clientHeight||1);bar.style.setProperty('--sp',(p*100)+'%');}
+addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  /* единая точка правды хэндла: меняешь TG_HANDLE выше — обновляются форма, alt-ссылка и футер */
+  document.querySelectorAll('.tg-link').forEach(a=>{a.href='https://t.me/'+TG_HANDLE;if(a.hasAttribute('data-at'))a.textContent='@'+TG_HANDLE;});
+  sp();
+});
+addEventListener('scroll',sp,{passive:true});
+
+/* каунтеры панели «считаем записи»: цифры набегают при входе в кадр */
+const redm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const cio=new IntersectionObserver(es=>es.forEach(en=>{
+  if(!en.isIntersecting)return;cio.unobserve(en.target);
+  const el=en.target,n=parseInt(el.textContent,10);
+  if(redm||!n)return;
+  const t0=performance.now(),d=900;
+  requestAnimationFrame(function tick(t){
+    const k=Math.min(1,(t-t0)/d);
+    el.textContent=Math.round(n*(1-Math.pow(1-k,3)));
+    if(k<1)requestAnimationFrame(tick);
+  });
+}),{threshold:.6});
+document.querySelectorAll('.sr-panel-count').forEach(c=>cio.observe(c));
+</script>
+
+<!-- Плавный скролл: Lenis (github.com/darkroomengineering/lenis, MIT, локальная копия) -->
+<script src="assets/lenis.min.js"></script>
+<script>
+if(!matchMedia('(prefers-reduced-motion:reduce)').matches && window.Lenis){
+  const lenis=new Lenis({autoRaf:true,duration:1.05});
+  /* якоря ведём через Lenis — с поправкой на липкую шапку */
+  document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();lenis.scrollTo(t,{offset:-64});}
+  }));
+}
+</script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+   ym(0, "init", {clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/0" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<script>
+document.addEventListener("submit", function(e){
+  if (e.target && e.target.tagName === "FORM") {
+    try { window.ym && ym(0, "reachGoal", "lead"); } catch (err) {}
+  }
+}, true);
+</script>
+<script>
+document.addEventListener("submit", function(e){
+  var f = e.target;
+  if (!f || f.tagName !== "FORM") return;
+  var q = new URLSearchParams(location.search);
+  var pick = function(n){ return (f.elements[n] && f.elements[n].value) || ""; };
+  var payload = {
+    name: pick("cname") || pick("name"),
+    contact: pick("contact") || pick("phone"),
+    source_answer: pick("source_answer"),
+    utm_source: q.get("utm_source") || "",
+    promo_code: pick("promo_code"),
+    page: location.pathname
+  };
+  if (!payload.name || !payload.contact) return;
+  try {
+    fetch("/api/lead", {method: "POST", keepalive: true,
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(payload)});
+  } catch (err) {}
+}, true);
+</script>
+</body>
+</html>

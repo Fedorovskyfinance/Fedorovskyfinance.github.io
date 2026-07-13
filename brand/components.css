@@ -1,0 +1,97 @@
+/* ============================================================
+   PRAXIS · COMPONENTS — примитивы поверх tokens.css.
+   Только var(--*), без сырых hex. Наследуют все материалы.
+   ============================================================ */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-body);
+  background:var(--bg); color:var(--ink);
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  line-height:1.5;
+}
+
+h1,h2{font-family:var(--font-serif);font-weight:600;letter-spacing:-.015em;line-height:1.02}
+h1{font-size:clamp(2.6rem,8vw,6rem)}
+h2{font-size:clamp(1.9rem,5vw,3.6rem)}
+.serif-i{font-family:var(--font-serif);font-style:italic;font-weight:400}
+.gold{color:var(--gold)}
+.accent{color:var(--accent)}
+
+.kicker{
+  font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--accent);font-weight:700;
+  display:flex;align-items:center;gap:1rem;margin-bottom:1.8rem;
+}
+.kicker::before{content:"";width:38px;height:1px;background:var(--accent);display:inline-block}
+
+.lead{font-size:clamp(1.05rem,2vw,1.45rem);line-height:1.5;color:var(--ink-dim);max-width:46ch;margin-top:1.4rem}
+
+/* pills / теги */
+.pills{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.6rem}
+.pill{font-size:.85rem;padding:.5rem 1rem;border:1px solid var(--line);border-radius:999px;color:var(--ink);background:transparent}
+.pill.on{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.pill.strike{color:var(--ink-faint);border-color:transparent;text-decoration:line-through;text-decoration-color:var(--accent);opacity:.75}
+
+/* CTA */
+.cta{
+  margin-top:2.4rem;display:inline-flex;align-items:center;gap:1rem;
+  font-family:var(--font-grotesk);font-weight:600;font-size:clamp(1rem,2.2vw,1.4rem);
+  color:var(--bg);background:var(--accent);padding:.9rem 1.7rem;border-radius:var(--radius);
+  width:fit-content;text-decoration:none;cursor:pointer;
+}
+.cta .arr{transition:transform .4s var(--ease)}
+.cta:hover .arr{transform:translateX(8px)}
+
+/* числовые ячейки (прайс/метрики) */
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2rem}
+.num{border-top:2px solid var(--accent);padding-top:.9rem}
+.num-k{font-family:var(--font-grotesk);color:var(--accent);font-size:clamp(1.4rem,3vw,2rem);font-weight:600}
+.num-v{font-size:.85rem;color:var(--ink-dim);margin-top:.35rem;line-height:1.35}
+
+.divider{height:1px;background:var(--line);border:0;margin:1.6rem 0}
+.disclaimer{font-size:.72rem;color:var(--ink-faint);line-height:1.4}
+.wordmark{font-family:var(--font-serif);font-weight:600;letter-spacing:.04em}
+.wordmark .dot{color:var(--accent)}
+
+/* слайд = один экран (для деков) */
+.slide{
+  position:relative;z-index:1;min-height:100vh;padding:var(--pad);
+  display:flex;flex-direction:column;justify-content:center;overflow:hidden;
+  scroll-snap-align:start;background:var(--bg);color:var(--ink);
+}
+.deck{scroll-snap-type:y mandatory}
+
+/* reveal по входу в viewport */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity var(--dur) var(--ease),transform var(--dur) var(--ease)}
+.slide.visible .reveal{opacity:1;transform:none}
+.slide.visible .reveal:nth-child(2){transition-delay:.1s}
+.slide.visible .reveal:nth-child(3){transition-delay:.2s}
+.slide.visible .reveal:nth-child(4){transition-delay:.3s}
+.stagger>*{opacity:0;transform:translateY(22px)}
+.slide.visible .stagger>*{animation:rise .8s var(--ease) forwards}
+.slide.visible .stagger>*:nth-child(2){animation-delay:.12s}
+.slide.visible .stagger>*:nth-child(3){animation-delay:.24s}
+.slide.visible .stagger>*:nth-child(4){animation-delay:.36s}
+.slide.visible .stagger>*:nth-child(5){animation-delay:.48s}
+@keyframes rise{to{opacity:1;transform:none}}
+
+/* хром дека */
+.progress{position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:50;transition:width .25s linear}
+.dots{position:fixed;right:clamp(1rem,2.5vw,2.2rem);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:.85rem;z-index:50}
+.dots button{width:8px;height:8px;border-radius:50%;border:1px solid var(--ink-faint);background:transparent;cursor:pointer;padding:0;transition:.3s}
+.dots button.active{background:var(--accent);border-color:var(--accent);transform:scale(1.35)}
+
+@media (max-width:820px){.dots{display:none}.nums{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){
+  .reveal,.slide.visible .stagger>*{transition:opacity .3s ease;animation:none;opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+/* печать: светлые материалы экономно; цвета сохраняем для тёмных обложек */
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .dots,.progress{display:none}
+  .reveal,.stagger>*{opacity:1 !important;transform:none !important;animation:none !important}
+  .deck .slide{min-height:100vh;page-break-after:always}
+  .deck .slide:last-child{page-break-after:auto}
+}
